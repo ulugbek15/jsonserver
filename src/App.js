@@ -9,7 +9,7 @@ function App() {
   const [object, setObject] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/todos")
+    fetch("https://json-todos.herokuapp.com/todos")
       .then((res) => res.json())
       .then((data) => setTodo(data));
   }, [todo]);
@@ -17,7 +17,7 @@ function App() {
   const hendleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:3000/todos", {
+    fetch("https://json-todos.herokuapp.com/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ function App() {
   };
 
   const deleteTodo = (id) => {
-    fetch(`http://localhost:3000/todos/${id}`, {
+    fetch(`https://json-todos.herokuapp.com/todos/${id}`, {
       method: "DELETE",
     }).catch((e) => console.error(e));
   };
@@ -40,7 +40,7 @@ function App() {
   const updateTodo = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/todos/${object.id}`, {
+    fetch(`https://json-todos.herokuapp.com/todos/${object.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -67,20 +67,24 @@ function App() {
             onChange={(e) => setUpdate(e.target.value)}
           />
           <button>Update</button>
-          <button onClick={() => setModal(false)} >x</button>
+          <button onClick={() => setModal(false)}>x</button>
         </form>
       )}
 
-      {todo.map((t) => {
+      {todo?.map((t) => {
         return (
-            <li key={t.id}>
-              {t.content}
-              <button onClick={() => deleteTodo(t.id)}>X</button>
-              <button onClick={() => {
-                setModal(true)
-                setObject(t)
-              }}>Update</button>
-            </li>
+          <li key={t.id}>
+            {t.content}
+            <button onClick={() => deleteTodo(t.id)}>X</button>
+            <button
+              onClick={() => {
+                setModal(true);
+                setObject(t);
+              }}
+            >
+              Update
+            </button>
+          </li>
         );
       })}
     </>
