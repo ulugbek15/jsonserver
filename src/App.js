@@ -9,7 +9,7 @@ function App() {
   const [object, setObject] = useState("");
 
   useEffect(() => {
-    fetch("https://todos-jsonserver.herokuapp.com/todos")
+    fetch("https://modest-chandrasekhar-a65a90.netlify.app/todos")
       .then((res) => res.json())
       .then((data) => setTodo(data));
   }, [todo]);
@@ -17,7 +17,7 @@ function App() {
   const hendleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("https://todos-jsonserver.herokuapp.com/todos", {
+    fetch("https://modest-chandrasekhar-a65a90.netlify.app/todos", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ function App() {
   };
 
   const deleteTodo = (id) => {
-    fetch(`https://todos-jsonserver.herokuapp.com/todos/${id}`, {
+    fetch(`https://modest-chandrasekhar-a65a90.netlify.app/todos/${id}`, {
       method: "DELETE",
     }).catch((e) => console.error(e));
   };
@@ -40,7 +40,7 @@ function App() {
   const updateTodo = (e) => {
     e.preventDefault();
 
-    fetch(`https://todos-jsonserver.herokuapp.com/todos/${object.id}`, {
+    fetch(`https://modest-chandrasekhar-a65a90.netlify.app/todos/${object.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
